@@ -47,3 +47,46 @@ app.post('/send-notification', (req, res) => {
 app.listen(process.env.PORT, () => {
   console.log('Server listening on port ', process.env.PORT);
 });
+
+/**
+ * 
+ * self.addEventListener('push', function(event) {
+	const notification = event.data.json();
+	const title = notification.title;
+	const options = {
+	  body: notification.body,
+	  icon: notification.icon,
+	};
+	event.waitUntil(self.registration.showNotification(title, options));
+  });
+ * 
+ * ffront
+ * 		function sendSubscriptionToBackend(subscription) {
+			return fetch('http://localhost:8000/subscribe', {
+				method: 'POST',
+				headers: {
+				'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(subscription),
+			});
+			}
+
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').then(function() {
+          console.log("Service Worker Registered");
+
+		  navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
+			// Subscribe the user to push notifications
+			serviceWorkerRegistration.pushManager.subscribe()
+			.then(function(subscription) {
+				// Send the subscription object to the backend
+				sendSubscriptionToBackend(subscription);
+			})
+			.catch(function(error) {
+				console.error(error);
+			});
+		});
+		 
+        });
+      }
+ */
