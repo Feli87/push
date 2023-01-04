@@ -25,6 +25,13 @@ app.post('/subscribe', (req, res) => {
   });
 });
 
+app.get('/', (req, res) => {
+    // Save the subscription object received from the client
+    res.status(200).json({
+        test:"server on"
+    });
+  });
+
 // Set up a route to send push notifications
 app.post('/send-notification', (req, res) => {
   // Get the subscription object
@@ -37,6 +44,6 @@ app.post('/send-notification', (req, res) => {
 });
 
 // Start the server
-app.listen(8000, () => {
-  console.log('Server listening on port 3000');
+app.listen(process.env.PORT, () => {
+  console.log('Server listening on port ', process.env.PORT);
 });
